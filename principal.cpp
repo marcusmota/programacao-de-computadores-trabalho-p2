@@ -52,8 +52,8 @@ int main (void){
 	}
 
 	cout << endl << endl << "Resumo do dia "	<< dtDev[0] << dtDev[1] << " de " 
-										<< dtDev[3] << dtDev[4] << " de " 
-										<< dtDev[6] << dtDev[7] << dtDev[8] << dtDev[9] << endl;
+												<< dtDev[3] << dtDev[4] << " de " 
+												<< dtDev[6] << dtDev[7] << dtDev[8] << dtDev[9] << endl;
 
 	for(int i=0;i<numDev;i++)
     {
