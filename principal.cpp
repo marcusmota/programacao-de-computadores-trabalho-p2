@@ -1,74 +1,106 @@
+/*
+ *
+ *   Criado por Marcus Mota
+ *   Email: marcushcsm@gmail.com
+ *
+ *
+ */
+
+
 #include <iostream>
 using namespace std;
+
+void pontilhada(char caracter, int length)
+{
+    for(int j=0;j<length;j++)
+    {
+        cout << caracter;
+    }
+};
+
+struct dataModelo
+{
+    int dia;
+    int mes;
+    int ano;
+};
 
 struct aluno
 {
 	long aluno;
 	char livro[30];
-	char dtEmp[10];
+	dataModelo dtEmp;
 	int atraso;
 	float multa;
 };
 
+float totalMulta(aluno *p, int numDev)
+{
+	float total =0;
+	for(int i=0;i<numDev;i++)
+	{
+		total = total + p[i].multa;
+	}
+	return total;
+}
+
+
+
 int main (void){
 
 	int numDev;
-	char dtDev[10] ;
-	float totalMultas;
+    const float multaPorDia = 0.80;
 
 	aluno * p = new aluno[numDev];
-	
+
     cout << "Qual o número de devoluções para hoje? ";
     cin >> numDev;
-    
-    cout << "Qual a data de devolução? ";
-    cin >> dtDev;
 
-    
+    dataModelo dtDev;
+
+    cout << "Qual a data de devolução? ";
+
+    cin >> dtDev.dia;
+    cin >> dtDev.mes;
+    cin >> dtDev.ano;
+
+
 
     for(int i=0;i<numDev;i++)
     {
-    	for(int j=0;j<30;j++)
-    	{
-    		cout << "-";
-    	}
+    	pontilhada('-',30);
     	cout << endl;
     	cout << "Aluno       : ";
-    	cin >> p[i].aluno; 
+    	cin >> p[i].aluno;
     	cout << "Livro       : ";
-    	cin >> p[i].livro; 
+    	cin >> p[i].livro;
     	cout << "Empréstimo  : ";
-    	cin >> p[i].dtEmp;
+    	cin >> p[i].dtEmp.dia;
+        cin >> p[i].dtEmp.mes;
+        cin >> p[i].dtEmp.ano;
     	cout << "Atraso      : ";
-    	cin >> p[i].atraso; 
+    	cin >> p[i].atraso;
     	cout << "Multa       : ";
     	cin >> p[i].multa;
-    	totalMultas = totalMultas + p[i].multa; 
     }
 
-    for(int j=0;j<30;j++)
-	{
-		cout << "-";
-	}
+    pontilhada('-',50);
 
-	cout << endl << endl << "Resumo do dia "	<< dtDev[0] << dtDev[1] << " de " 
-												<< dtDev[3] << dtDev[4] << " de " 
-												<< dtDev[6] << dtDev[7] << dtDev[8] << dtDev[9] << endl;
+	cout << endl << endl << "Resumo do dia "    << dtDev.dia << " de "
+												<< dtDev.mes << " de "
+												<< dtDev.ano << endl;
 
 	for(int i=0;i<numDev;i++)
     {
     	cout << endl;
-    	cout << p[i].aluno << " " << p[i].livro << " " << p[i].dtEmp << " -> " << p[i].multa;
+    	cout << p[i].aluno << " " << p[i].livro << " " << p[i].dtEmp.dia << "/" << p[i].dtEmp.mes << "/" << p[i].dtEmp.ano << " -> " << p[i].multa;
     }
 
     cout << endl << endl;
-	cout << "Total em multas: " << totalMultas <<  endl << endl;
+	cout << "Total em multas: " << totalMulta(p, numDev) <<  endl << endl;
 
-	for(int j=0;j<30;j++)
-	{
-		cout << "-";
-	}
+	pontilhada('-',50);
 
-	cout << endl;
+
     return (0);
-} 	
+}
